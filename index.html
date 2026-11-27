@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f7f8fa" />
+    <title>오늘 뭐 먹을까?</title>
+    <meta name="description" content="고민은 짧게, 맛있는 선택은 확실하게. 근처 맛집을 골라드려요." />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="오늘 뭐 먹을까?" />
+    <meta property="og:description" content="고민은 짧게, 맛있는 선택은 확실하게. 근처 맛집을 골라드려요." />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23ff6d4d'/%3E%3Ctext x='32' y='43' text-anchor='middle' font-size='34'%3E🍚%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Pretendard:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="page-shell">
+      <nav class="topbar">
+        <a class="brand" href="#top"><span class="brand-mark">밥</span><span>오늘 뭐 먹을까?</span></a>
+        <div class="nav-actions"><button class="ghost-button" id="historyButton">추천 기록 <span id="historyCount">0</span></button><button class="circle-button" id="infoButton" aria-label="정보">?</button></div>
+      </nav>
+
+      <section class="hero" id="top">
+        <div class="eyebrow"><span></span>오늘의 메뉴 큐레이터</div>
+        <h1>오늘은,<br /> <em>뭐 먹지?</em></h1>
+        <p>고민은 짧게, 맛있는 선택은 확실하게.<br /> 지금 있는 곳 근처의 맛집을 골라드릴게요.</p>
+      </section>
+
+      <section class="control-card" aria-label="검색 조건">
+        <div class="section-label">어디에서 먹을까요?</div>
+        <div class="location-row">
+          <label class="location-input"><span>⌖</span><input id="locationInput" value="강남역" placeholder="동네, 역, 주소를 입력하세요" aria-label="지역 또는 장소" /><button id="searchLocation" type="button">검색</button></label>
+        </div>
+        <div class="area-chips" id="areaChips"></div>
+        <p class="location-status" id="locationStatus">지역을 고르거나 주소를 검색해보세요. 지도를 클릭해도 바뀌어요.</p>
+        <div class="section-label category-label">어떤 메뉴가 끌리나요?</div>
+        <div class="category-grid" id="categoryGrid"></div>
+        <div class="menu-picker"><div class="section-label">인기 메뉴를 직접 골라보세요 <span>선택하지 않으면 랜덤</span></div><div class="menu-chips" id="menuChips"></div></div>
+        <button class="draw-button" id="drawButton"><span class="dice">✦</span><span>메뉴 뽑기</span><span class="arrow">→</span></button>
+        <div class="random-note"><span>✺</span> 완전 랜덤은 모든 카테고리에서 골라요</div>
+      </section>
+
+      <section class="result-section" id="resultSection" aria-live="polite">
+        <div class="result-heading"><div><span class="eyebrow small"><span></span>오늘의 추천</span><h2>이 메뉴는 어때요?</h2></div><div class="result-actions"><button class="refresh-button" id="shareButton">↗ 공유</button><button class="refresh-button" id="refreshButton">↻ 다시 뽑기</button></div></div>
+        <article class="restaurant-card" id="restaurantCard"></article>
+      </section>
+
+      <section class="explore-section" aria-label="근처 맛집">
+        <div class="section-heading"><div><span class="eyebrow small"><span></span>주변 탐색</span><h2>해당 메뉴 파는 가까운 매장</h2></div><button class="refresh-button" id="refreshNearby">↻ 새로고침</button></div>
+        <div class="map-card">
+          <div id="map" class="map" aria-label="주변 맛집 지도"><div class="map-loading">지도를 불러오는 중이에요...</div></div>
+          <div class="nearby-panel">
+            <div class="nearby-header"><span id="nearbyLocationLabel">강남역 기준</span><span class="nearby-count" id="nearbyCount">0곳</span></div>
+            <p class="map-hint">📍 지도를 클릭하거나 파란 마커를 끌면 그 위치로 바뀌어요.</p>
+            <div class="nearby-list" id="nearbyList"></div>
+          </div>
+        </div>
+        <p class="guide-note"><span class="guide-icon">ⓘ</span><span>이 목록은 선택한 위치에서 <strong>가까운 순</strong>으로 보여드리는 검색 결과예요. 인기나 평점 순위와는 관련이 없어요. 별점과 후기는 각 매장의 <strong>상세 보기</strong>를 눌러 카카오맵에서 확인해보세요.</span></p>
+      </section>
+
+      <section class="tip-card"><div class="tip-icon">🍚</div><div><strong>결정장애라면?</strong><p>친구와 화면을 공유하고 함께 뽑아보세요.<br />누가 뽑든, 맛있는 곳으로 갈 확률은 100%!</p></div></section>
+      <footer>오늘 뭐 먹을까? <span>·</span> 당신의 다음 한 끼를 응원해요</footer>
+    </main>
+    <div class="history-modal" id="historyModal" role="dialog" aria-modal="true" aria-labelledby="historyTitle">
+      <div class="history-dialog"><header><h2 id="historyTitle">추천 받은 기록</h2><button class="history-close" id="closeHistory" aria-label="닫기">×</button></header><div class="history-list" id="historyList"></div></div>
+    </div>
+    <div class="toast" id="toast" role="status"></div>
+    <script src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=c3b04ba5575613c6409421d8308e0583&autoload=false&libraries=services"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
